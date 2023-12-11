@@ -7,9 +7,11 @@ import java.util.LinkedHashMap;
 public class FunctionValueFinder {
 	public boolean isFunctionValuePresent(List<Integer> sourceList, int requiredValue) {
 		Map<Integer, Integer> functionMap = calculateFunctionMap(sourceList);
-		for (Map.Entry<Integer, Integer> item : functionMap.entrySet()) {
-			if (requiredValue == item.getValue()) {
-				return true;
+		if (!sourceList.isEmpty()) {
+			for (Map.Entry<Integer, Integer> item : functionMap.entrySet()) {
+				if (requiredValue == item.getValue()) {
+					return true;
+				}
 			}
 		}
 		return false;
@@ -17,8 +19,10 @@ public class FunctionValueFinder {
 
 	private Map<Integer, Integer> calculateFunctionMap(List<Integer> sourceList) {
 		Map<Integer, Integer> functionMap = new LinkedHashMap<>();
-		for (int i = 0; i < sourceList.size(); ++i) {
-			functionMap.put(sourceList.get(i), 5 * sourceList.get(i) + 2);
+		if (!sourceList.isEmpty()) {
+			for (int i = 0; i < sourceList.size(); ++i) {
+				functionMap.put(sourceList.get(i), 5 * sourceList.get(i) + 2);
+			}
 		}
 		return functionMap;
 	}
